@@ -13,7 +13,7 @@ The code for Neural ODEs was adapted from this [repo](https://github.com/rtqiche
 
 ## Mumax3 simulations
 
-Run the '.mx3' file in each folder of Mumax3_simulations
+Run the '.mx3' file in each folder of Mumax3_simulations.  
 To obtain the training data of voltage-induced skyrmion system, run:
 ```sh
 #one skyrmion system
@@ -23,6 +23,17 @@ nohup ./mumax3 -gpu 0 1skyrmion_voltage_train.mx3 > outputfile &
 #multiple skyrmion system
 nohup ./mumax3 -gpu 0 4skyrmion_voltage_train.mx3 > outputfile &
 ``` 
+To obtain the results of time-varing output from reservoir of skyrmion system using Mumax3, run:
+```sh
+#one skyrmion system
+nohup ./mumax3 -gpu 0 1skyrmion_voltage_mackey_glass.mx3 > outputfile &
+``` 
+```sh
+#one skyrmion system
+nohup ./mumax3 -gpu 0 4skyrmion_voltage_mackey_glass.mx3 > outputfile &
+``` 
+
+
 
 
 ## Training voltage-induced skyrmion dynamics  
@@ -62,7 +73,7 @@ Change the seed number randomly:
 python main.py --name 4skyrmion_voltage --steps 1 --data_size 15000 --Loss_min_th 5e-3 --torch_seed 8 --np_seed 10   
 ```
 ## Mackey-Glass time series prediction using skyrmion system with voltage as input
-To obtain the results of time-varing output from reservoir of skyrmion system, run:
+To obtain the results of time-varing output from reservoir of skyrmion system using the trained model, run:
 ```sh
 #one skyrmion system
 python main.py -ts   
