@@ -1,0 +1,99 @@
+// geometry
+s := loadfile("sequence_mg2.ovf")
+print(s.size())
+for i:=0; i<300; i++{
+        print(s.get(0,i,0,0))
+}
+
+Nx := 120
+Ny := 120
+Nz := 1
+
+cellsizeX := 1e-9
+cellsizeY := 1e-9
+cellsizeZ := 1e-9
+
+SetGridsize(Nx, Ny, Nz)
+SetCellsize(cellsizeX, cellsizeY, cellsizeZ)
+
+// define regions:circular region
+setgeom(circle(Nx*cellsizeX))
+OutputFormat = OVF2_TEXT
+//save(regions)
+
+
+
+Msat  = 580e3
+Aex   = 15e-12
+alpha = 0.1
+anisU = vector(0,0,1)
+Ku1   = 8e5
+Dind = 3.5e-3
+
+// define regions
+// define grains with region number 0-255
+grainSize  := 10e-9  // m
+randomSeed := 1234567
+maxRegion  := 98
+ext_makegrains(grainSize, maxRegion, randomSeed)
+defregion(99, circle(Nx*cellsizeX).inverse()) // region 256 is outside, not really needed
+
+K := 8e5
+D := 3.5e-3
+delta := 0.2 // anisotropy variation
+randSeed(6)
+
+// set random parameters per region
+for i:=0; i<maxRegion; i++{
+        AnisU.SetRegion(i, vector(delta*(rand()-0.5), delta*(rand()-0.5), 1))
+        Ku1.SetRegion(i, K + randNorm() * 0.2 * K)
+        Dind.SetRegion(i, D + randNorm() * 0.2 * D)
+}
+
+
+save(regions)
+
+// add skyrmions
+Diameter := 40e-9
+Distance := 60e-9
+m = uniform(0,0,1)
+//m.setInShape(circle(Diameter).Transl(0,0,0), NeelSkyrmion(1,-1).Transl(0,0,0))
+m.setInShape(circle(Diameter).Transl(Distance/2,0,0), NeelSkyrmion(1,-1).Transl(Distance/2,0,0))
+m.setInShape(circle(Diameter).Transl(-Distance/2,0,0), NeelSkyrmion(1,-1).Transl(-Distance/2,0,0))
+
+m.setInShape(circle(Diameter).Transl(0,Distance/2,0), NeelSkyrmion(1,-1).Transl(0,Distance/2,0))
+m.setInShape(circle(Diameter).Transl(0,-Distance/2,0), NeelSkyrmion(1,-1).Transl(0,-Distance/2,0))
+
+relax() 
+run(1e-9) 
+
+
+//setting the saving formats
+P := 2.5e-12
+autosave(m, 10*P)
+OutputFormat = OVF2_TEXT
+tableautosave(P)
+TableAdd(Ku1.Region(100))
+
+alpha = 0.01
+Ku_Diameter := 120e-9
+DefRegion(100, circle(Ku_Diameter))
+f := 4e9
+Period := 4*P
+
+//send the pre-processed input wave of mackey glass series sequentially
+Num := 50*10000
+
+for i:=0; i<Num; i++{
+     temp :=s.get(0,i,0,0)
+     Ku1.SetRegion(100, 8e5+2e5*temp*0.5)
+     run(Period)
+}
+
+
+
+
+
+
+
+

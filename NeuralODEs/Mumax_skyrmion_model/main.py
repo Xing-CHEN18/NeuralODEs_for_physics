@@ -52,8 +52,6 @@ parser.add_argument('--RC_size', type=int, default=50, help='reservoir size for 
 parser.add_argument('--keep_step', type=int, default=2, help='time steps (time_duration = keep_step*dt) for each preprocessed input')
 parser.add_argument('--mg_scale_factor', type=float, default=0.4, help='multiply a scale_factor for each preprocessed input')  #1 skyrmion:0.4  4skyrmions: 0.25
 parser.add_argument('--dim', type=int, default=2, help='dimensions of the dynamics') #for voltage skyrmions dim = steps, for current skyrmions dim = 2
-parser.add_argument('--load_params_name', type=str, default='params_1skyr_voltage.pkl', help='load the saved model for testing')
-parser.add_argument('--save_predicted_output', type=str, default='mg_1skyr_voltage.txt', help='load the saved model for testing')
 
 parser.add_argument('-f')
 args = parser.parse_args()
@@ -328,7 +326,7 @@ if __name__ == "__main__":
         sequence = sequence/np.abs(sequence.min())*args.mg_scale_factor #normalize the pre-processed input to a certain range
         model = ODEFunc(sequence, neural_num = args.neural_num, dim = args.dim, ext_dim = args.steps, ext_in = 'mg', keep_step = args.keep_step, dt = args.dt)
         model.to(device)
-        model.load_state_dict((torch.load('./output/'+args.load_params_name, map_location = 'cpu'))['model_state_dict'])
+        model.load_state_dict((torch.load('./output/'+'params_'+args.name+'.pkl', map_location = 'cpu'))['model_state_dict'])
 
         y0 = torch.tensor([(args.dim+1)*[0]], dtype=Default_dtype)
         t = torch.arange(0., (len(sequence)-1)*args.keep_step*model.dt, model.dt)
@@ -336,7 +334,7 @@ if __name__ == "__main__":
         with torch.no_grad():
             pred_y = odeint(model, y0, t, method = 'rk4')
     
-        np.savetxt('./output/'+args.save_predicted_output, pred_y[:,0,0].numpy())
+        np.savetxt('./output/'+'mg_'+args.name+'.pkl', pred_y[:,0,0].numpy())
         c1 = time.perf_counter()
         print("Ended in"+ str(c1-c0)+ "seconds.")
             
