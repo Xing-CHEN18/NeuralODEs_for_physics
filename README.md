@@ -29,7 +29,7 @@ To obtain the results of time-varing output from reservoir of skyrmion system us
 nohup ./mumax3 -gpu 0 1skyrmion_voltage_mackey_glass.mx3 > outputfile &
 ``` 
 ```sh
-#one skyrmion system
+#multiple skyrmion system
 nohup ./mumax3 -gpu 0 4skyrmion_voltage_mackey_glass.mx3 > outputfile &
 ``` 
 
