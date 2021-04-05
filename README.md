@@ -21,12 +21,12 @@ python main.py --steps 1
 #NODE k = 2
 python main.py  
 ```
-Change the seed number:  
+Change the seed number randomly:  
 ```sh
 #NODE k = 2
 python main.py --torch_seed 7 --np_seed 7   
 ```
-To obtain results of Fig. 2(b) for multiple skyrmions system, run:  
+To obtain results of Fig. 2(c) for multiple skyrmions system, run:  
 ```sh
 #NODE k = 1
 python main.py --name 4skyrmion_voltage --steps 1 --data_size 15000 --Loss_min_th 5e-3  
@@ -35,9 +35,16 @@ python main.py --name 4skyrmion_voltage --steps 1 --data_size 15000 --Loss_min_t
 #NODE k = 2
 python main.py --name 4skyrmion_voltage --data_size 15000 --Loss_min_th 5e-3  
 ```
-Change the seed number:  
+Change the seed number randomly:  
 ```sh
-#NODE k = 1
-python main.py --name 4skyrmion_voltage --steps 1 --data_size 15000 --Loss_min_th 5e-3 --torch_seed 7 --np_seed 7   
+#NODE k = 2
+python main.py --name 4skyrmion_voltage --steps 1 --data_size 15000 --Loss_min_th 5e-3 --torch_seed 8 --np_seed 10   
 ```
+## Mackey-Glass time series prediction using skyrmion system
+ 
+ 
+ 
+ 
+ 
+ 
  
