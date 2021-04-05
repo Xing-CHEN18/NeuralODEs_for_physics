@@ -10,6 +10,21 @@ The folder 'Mumax3_simulaions' contains all the Mumax simulations code. The fold
 
 The code for Neural ODEs was adapted from this [repo](https://github.com/rtqichen/torchdiffeq).   
 
+
+## Mumax3 simulations
+
+Run the '.mx3' file in each folder of Mumax3_simulations
+To obtain the training data of voltage-induced skyrmion system, run:
+```sh
+#one skyrmion system
+nohup ./mumax3 -gpu 0 1skyrmion_voltage_train.mx3 > outputfile &
+``` 
+```sh
+#multiple skyrmion system
+nohup ./mumax3 -gpu 0 4skyrmion_voltage_train.mx3 > outputfile &
+``` 
+
+
 ## Training voltage-induced skyrmion dynamics  
 
 To obtain the results of Fig. 2(b) for one skyrmion system, run:  
