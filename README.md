@@ -26,6 +26,12 @@ Change the seed number randomly:
 #NODE k = 2
 python main.py --torch_seed 7 --np_seed 7   
 ```
+To run different seed number consecutively:
+```sh
+#NODE k = 2
+python execute.py    
+```
+
 To obtain results of Fig. 2(c) for multiple skyrmions system, run:  
 ```sh
 #NODE k = 1
@@ -40,14 +46,18 @@ Change the seed number randomly:
 #NODE k = 2
 python main.py --name 4skyrmion_voltage --steps 1 --data_size 15000 --Loss_min_th 5e-3 --torch_seed 8 --np_seed 10   
 ```
-## Mackey-Glass time series prediction using skyrmion system
+## Mackey-Glass time series prediction using skyrmion system with voltage as input
 To obtain the results of time-varing output from reservoir of skyrmion system, run:
 ```sh
 #one skyrmion system
 python main.py -ts   
 ```
+```sh
+#multiple skyrmion system
+python main.py -ts --name 4skyrmion_voltage
+```
+To obtain the results of mackey-glass prediction:
 
- 
  
  
  
