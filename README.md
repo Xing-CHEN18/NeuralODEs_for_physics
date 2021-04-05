@@ -25,11 +25,11 @@ nohup ./mumax3 -gpu 0 4skyrmion_voltage_train.mx3 > outputfile &
 ``` 
 To obtain the results of time-varing output from reservoir of skyrmion system using Mumax3, run:
 ```sh
-#one skyrmion system
+#one skyrmion system, requires simulation time of 2~3 days
 nohup ./mumax3 -gpu 0 1skyrmion_voltage_mackey_glass.mx3 > outputfile &
 ``` 
 ```sh
-#multiple skyrmion system
+#multiple skyrmion system, requires simulation time of more than 4 days
 nohup ./mumax3 -gpu 0 4skyrmion_voltage_mackey_glass.mx3 > outputfile &
 ``` 
 
