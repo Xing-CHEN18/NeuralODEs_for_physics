@@ -41,7 +41,12 @@ Change the seed number randomly:
 python main.py --name 4skyrmion_voltage --steps 1 --data_size 15000 --Loss_min_th 5e-3 --torch_seed 8 --np_seed 10   
 ```
 ## Mackey-Glass time series prediction using skyrmion system
- 
+To obtain the results of time-varing output from reservoir of skyrmion system, run:
+```sh
+#one skyrmion system
+python main.py -ts   
+```
+
  
  
  
