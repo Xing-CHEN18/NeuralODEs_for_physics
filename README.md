@@ -80,7 +80,7 @@ python main.py -ts
 ```
 ```sh
 #multiple skyrmion system
-python main.py -ts --name 4skyrmion_voltage
+python main.py -ts --name 4skyrmion_voltage --mg_scale_factor 0.25
 ```
 To obtain the results of mackey-glass prediction:
 
