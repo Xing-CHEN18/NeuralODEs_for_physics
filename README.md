@@ -12,7 +12,24 @@ The code for Neural ODEs was adapted from this [repo](https://github.com/rtqiche
 
 ## Training voltage-induced skyrmion dynamics  
 
-To obtain the results of Fig. 2(b), 
+To obtain the results of Fig. 2(b) for one skyrmion system, run:  
+
+```sh
+#NODE k = 1
+  python main.py --steps 1   
+```
+
+```sh
+#NODE k = 2
+  python main.py  
+```
+Change the seed number:  
+
+```sh
+#NODE k = 2
+  python main.py --torch_seed 7 --np_seed 7   
+```
+
 
 To obtain results of multi-skyrmions, run:
 
