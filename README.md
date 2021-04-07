@@ -10,7 +10,6 @@ The folder 'Mumax3_simulaions' contains all the Mumax simulations code. The fold
 
 The code for Neural ODEs was adapted from this [repo](https://github.com/rtqichen/torchdiffeq).   
 
-
 ## Mumax3 simulations
 
 Run the '.mx3' file in each folder of Mumax3_simulations.  
@@ -32,7 +31,6 @@ nohup ./mumax3 -gpu 0 1skyrmion_voltage_mackey_glass.mx3 > outputfile &
 #multiple skyrmion system, requires simulation time of more than 4 days
 nohup ./mumax3 -gpu 0 4skyrmion_voltage_mackey_glass.mx3 > outputfile &
 ``` 
-
 
 ## Training voltage-induced skyrmion dynamics  
 
@@ -94,7 +92,20 @@ To obtain the results of Fig. 3(c) and 3(e),
 #one skyrmion system
 python main.py --h_max 7 -pe
 ```
-
+## Training parameters based model
+To obtain the results of Fig. 4(c-d), run train mode of main.py in the folder of NeuralODEs/Mumax_parameters_model_tr_ts:  
+```sh
+python main.py 
+```
+To obtain the results of Fig. 4(e-f), run test mode of main.py in the folder of NeuralODEs/Mumax_parameters_model_tr_ts:  
+```sh
+#Fig. 4(e)
+python main.py -ts --ext_in 'rand_txt' --discard 0 --data_size 16800
+```
+```sh
+#Fig. 4(f)
+python main.py -ts -dmi --ext_in 'rand_txt' --discard 0 --data_size 12800 --num_pars 16
+```
 
 
 
