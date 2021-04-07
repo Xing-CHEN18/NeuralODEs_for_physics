@@ -34,11 +34,9 @@ nohup ./mumax3 -gpu 0 4skyrmion_voltage_mackey_glass.mx3 > outputfile &
 ``` 
 
 
-
-
 ## Training voltage-induced skyrmion dynamics  
 
-To obtain the results of Fig. 2(b) for one skyrmion system, run:  
+To obtain the results of Fig. 2(b) for one skyrmion system, run train mode of main.py in the folder of NeuralODEs/Mumax_skyrmion_model:  
 ```sh
 #NODE k = 1
 python main.py --steps 1   
@@ -73,7 +71,7 @@ Change the seed number randomly:
 python main.py --name 4skyrmion_voltage --steps 1 --data_size 15000 --Loss_min_th 5e-3 --torch_seed 8 --np_seed 10   
 ```
 ## Mackey-Glass time series prediction using skyrmion system with voltage as input
-To obtain the results of time-varing output from reservoir of skyrmion system using the trained model, run:
+To obtain the results of time-varing output from reservoir of skyrmion system using the trained model, run test mode of main.py in the folder of NeuralODEs/Mumax_skyrmion_model:
 ```sh
 #one skyrmion system
 python main.py -ts   
@@ -82,7 +80,23 @@ python main.py -ts
 #multiple skyrmion system
 python main.py -ts --name 4skyrmion_voltage --mg_scale_factor 0.25
 ```
-To obtain the results of mackey-glass prediction:
+To obtain the results of mackey-glass prediction in Fig. 3(b) and 3(c), run main.py in the folder of Mackey_Glass_series_prediction_skyrmion:  
+```sh
+#one skyrmion system
+python main.py 
+```
+```sh
+#multiple skyrmion system
+python main.py --name 4skyrmion_voltage
+```
+To obtain the results of Fig. 3(c) and 3(e),  
+```sh
+#one skyrmion system
+python main.py --h_max 7 -pe
+```
+
+
+
 
  
  
