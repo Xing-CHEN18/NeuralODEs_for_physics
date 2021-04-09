@@ -106,9 +106,37 @@ python main.py -ts --ext_in 'rand_txt' --discard 0 --data_size 16800
 #Fig. 4(f)
 python main.py -ts -dmi --ext_in 'rand_txt' --discard 0 --data_size 12800 --num_pars 16
 ```
-
-
-
+## Training experimental spintronic oscillator dynamics
+To train the NODE model of oscillators, run train mode of main.py in the folder of NeuralODEs/Experiment_oscillator_model:  
+```sh
+#For cochlear method, k = 2
+python main.py --steps 2
+```
+```sh
+#For spectrogram method, k = 2
+python main.py --method 'spc' --steps 2
+```
+To obtain the results of NODE output, run the test mode:
+```sh
+#For cochlear method, k = 2
+python main.py -ts --steps 2
+```
+```sh
+#For spectrogram method, k = 2
+python main.py  --method 'spc' -ts --steps 2
+```
+## spoken digit recognition task using oscillators
+To obtain the results of recognition rate, run main.py in the folder of Spoken_digit_recog_oscillator :
+```sh
+#For cochlear method, k = 2
+python main.py 
+python main.py -ts 
+```
+```sh
+#For spectrogram method, k = 2
+python main.py  --method 'spc' 
+python main.py --method 'spc' -ts 
+```
  
  
  
