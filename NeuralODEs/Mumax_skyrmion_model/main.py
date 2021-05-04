@@ -80,9 +80,12 @@ def get_batch(data_size, batch_time, batch_size, t, true_y, ext):
     batch_ext = torch.stack([ext[s + i] for i in range(batch_time)], dim=0)
     return batch_y0, batch_t, batch_y, batch_ext
     
-    
-    
+
 class ODEFunc(nn.Module):
+    """
+    ODEFunc is the module for NeuralODE y' = f(y, t, ext). The input into the NeuralODE can be random sine wave:'rand_sin', any B-spline 
+    representation of a 1-D curve: 'rand_txt', time-dependent input of a sequence, such as mackey-glass series :'mg' with adjustable time step (keep_step)
+    """
 
     def __init__(self, tck, neural_num = 400,dropout_rate = 0, dim = 4, ext_dim =2, ext2_dim = 0, discard = 1000, ext_in = 'rand_sin', keep_step = 1, sample_p = 100, dt = 12.5/1000, ext_in2 = False, ext_in2_value = 0.1):
         super(ODEFunc, self).__init__()
@@ -264,9 +267,7 @@ if __name__ == "__main__":
             #true_y0s, true_ys = get_data_Mumax_pos(args.path, args.test_size+args.steps-1, args.discard, args.steps, args.disk_radius)
         
         elif args.Dataset == 2:
-            #path = './STNO/s2_d5-9_iter_1_200MSa_500mV_7mA_4484Oe_AmplifAve1Spectro.txt'
-            #path = './STNO/s2_d5-9_iter_1_200MSa_500mV_7mA_4480Oe_AmplifAve4CochleaOpt.txt'
-            #path = './STNO/OscillatorSignal/OscillatorSignal_01mA_1.txt'
+            
             true_y0, true_y = get_data_txt(args.path, args.data_size+ args.steps -1, 
                                            args.discard, args.steps, args.ds, 2,3)
             #true_y0s, true_ys = get_data_txt(args.path, args.test_size+ args.steps -1, args.discard, args.steps, args.ds, 2,3)
@@ -300,7 +301,7 @@ if __name__ == "__main__":
             
             if itr % args.test_freq == 0:
                 with torch.no_grad():
-                    pred_y = odeint(func, torch.cat((true_y0, ext[0,:,1:]), dim = -1), t)
+                    pred_y = odeint(func, torch.cat((true_y0, ext[0,:,1:]), dim = -1), t, method = 'rk4')
                     loss = F.mse_loss(pred_y[:,:,0:args.Loss_dim],true_y[:,:,0:args.Loss_dim])
                     Losses.append(loss.item())
                     np.savetxt('./output/Losses_'+args.name+'_dim'+str(args.steps)+'_st'+str(args.torch_seed)+'_sn'+str(args.np_seed)+'.out', np.array(Losses))

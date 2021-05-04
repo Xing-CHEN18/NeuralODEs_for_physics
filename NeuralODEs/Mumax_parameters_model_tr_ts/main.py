@@ -77,8 +77,13 @@ def get_batch(data_size, batch_time, batch_size, t, true_y, ext):
          
     
 class ODEFunc(nn.Module):
+    """
+    ODEFunc is the module for NeuralODE y' = f(y, t, ext). The input into the NeuralODE can be random sine wave:'rand_sin', any B-spline 
+    representation of a 1-D curve: 'rand_txt', time-dependent input of a sequence, such as mackey-glass series :'mg' with adjustable time step (keep_step).
+    Set enable_ext2 = True to allow for second time dependent inputs: 'rand_sin' (random sine input), 'rand_txt': B-spline representation of a 1-D curve.
+    """
 
-    def __init__(self, tck, neural_num = 400,dropout_rate = 0, dim = 4, ext_dim =2, ext2_dim = 0, discard = 1000, ext_in = 'rand_sin', keep_step = 1, sample_p = 100, dt = 12.5/1000, enable_ext2 = False, ext_in2 = 'value', ext_in2_value = 0.1):
+    def __init__(self, tck, neural_num = 400,dropout_rate = 0, dim = 4, ext_dim =2, ext2_dim = 0, discard = 1000, ext_in = 'rand_sin', keep_step = 1, sample_p = 100, dt = 12.5/1000, enable_ext2 = False, ext_in2 = 'rand_sin', ext_in2_value = 0.1):
         super(ODEFunc, self).__init__()
         
         self.pi = torch.acos(torch.zeros(1)).item() * 2

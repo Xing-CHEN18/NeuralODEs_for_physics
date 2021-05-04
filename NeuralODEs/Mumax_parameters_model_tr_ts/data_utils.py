@@ -5,7 +5,6 @@ import argparse
 
 import torch
 import torch.nn as nn
-#import torch.tensor as Tensor
 import torch.optim as optim
 from torchdiffeq import odeint_adjoint as odeint
 #from torchdiffeq import odeint as odeint
@@ -17,16 +16,15 @@ import matplotlib.pyplot as plt
 import matplotlib
 import matplotlib.ticker as mtick
 from scipy import interpolate
-import os.path
-import itertools
 from scipy import linalg
 from scipy.stats import norm, cauchy,laplace,logistic, gennorm
-from scipy.optimize import curve_fit
-import pandas as pd
-from scipy.signal import savgol_filter
-import pywt
-import scipy.io as sio
-import sys
+#import os.path
+#from scipy.optimize import curve_fit
+#import pandas as pd
+#from scipy.signal import savgol_filter
+#import pywt
+#import scipy.io as sio
+#import sys
 
 
 def get_data_Mumax_pos(path, data_length: int, disgard, steps, disk_radius, Default_dtype = torch.float64):
