@@ -31,7 +31,7 @@ nohup ./mumax3 -gpu 0 4skyrmion_voltage_mackey_glass.mx3 > outputfile &
 
 ## Training voltage-induced skyrmion dynamics  
 
-To obtain the results of Fig. 2(b) for one skyrmion system, run train mode of main.py in the folder of NeuralODEs/Mumax_skyrmion_model:  
+To obtain the results of Fig. 2(c) for one skyrmion system, run train mode of main.py in the folder of NeuralODEs/Mumax_skyrmion_model:  
 ```sh
 #NODE k = 1
 python main.py --steps 1   
@@ -51,7 +51,7 @@ To run different seed number consecutively:
 python execute.py    
 ```
 
-To obtain results of Fig. 2(c) for multiple skyrmions system, run:  
+To obtain results of Fig. 2(d) for multiple skyrmions system, run:  
 ```sh
 #NODE k = 1
 python main.py --name 4skyrmion_voltage --steps 1 --data_size 15000 --Loss_min_th 5e-3  
@@ -75,7 +75,7 @@ python main.py -ts
 #multiple skyrmion system
 python main.py -ts --name 4skyrmion_voltage --mg_scale_factor 0.25
 ```
-To obtain the results of mackey-glass prediction in Fig. 3(b) and 3(c), run main.py in the folder of Mackey_Glass_series_prediction_skyrmion:  
+To obtain the results of mackey-glass prediction in Fig. 3(d) and 3(e), run main.py in the folder of Mackey_Glass_series_prediction_skyrmion:  
 ```sh
 #one skyrmion system
 python main.py 
@@ -84,23 +84,23 @@ python main.py
 #multiple skyrmion system
 python main.py --name 4skyrmion_voltage
 ```
-To obtain the results of Fig. 3(c) and 3(e),  
+To obtain the results of Fig. 3(b) and 3(c),  
 ```sh
 #one skyrmion system
 python main.py --h_max 7 -pe
 ```
 ## Training parameters based model
-To obtain the results of Fig. 4(c-d), run train mode of main.py in the folder of NeuralODEs/Mumax_parameters_model_tr_ts:  
+To obtain the results of Fig. 4(d-e), run train mode of main.py in the folder of NeuralODEs/Mumax_parameters_model_tr_ts:  
 ```sh
 python main.py 
 ```
-To obtain the results of Fig. 4(e-f), run test mode of main.py in the folder of NeuralODEs/Mumax_parameters_model_tr_ts:  
+To obtain the results of Fig. 4(f-g), run test mode of main.py in the folder of NeuralODEs/Mumax_parameters_model_tr_ts:  
 ```sh
-#Fig. 4(e)
+#Fig. 4(f)
 python main.py -ts --ext_in 'rand_txt' --discard 0 --data_size 16800
 ```
 ```sh
-#Fig. 4(f)
+#Fig. 4(g)
 python main.py -ts -dmi --ext_in 'rand_txt' --discard 0 --data_size 12800 --num_pars 16
 ```
 ## Training experimental spintronic oscillator dynamics
