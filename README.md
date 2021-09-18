@@ -1,5 +1,5 @@
 # Neural ODEs for physics
-This repository contains the code producing the results of the paper "Forecasting the outcome of spintronic experiments with Neural Ordinary Differential Equations". GPU is needed for Mumax3 simulations. GPU/CPU is needed for Neural ODEs simulations. Python 3.7 and Pytoch 1.4.0 is needed.
+This repository contains the code producing the results of the paper "[Forecasting the outcome of spintronic experiments with Neural Ordinary Differential Equations](https://arxiv.org/abs/2108.02318)". GPU is needed for Mumax3 simulations. GPU/CPU is needed for Neural ODEs simulations. Python 3.7 and Pytoch 1.4.0 is needed.
 
 To install MuMax3, see [MuMax3](https://github.com/mumax/3).   
 To install pytorch, see [pytorch](https://pytorch.org/).    
